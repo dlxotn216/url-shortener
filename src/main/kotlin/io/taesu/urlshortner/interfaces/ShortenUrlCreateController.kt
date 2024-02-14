@@ -1,11 +1,11 @@
 package io.taesu.urlshortner.interfaces
 
 import io.taesu.urlshortner.app.dtos.SuccessResponse
+import io.taesu.urlshortner.application.AppHostConfig
 import io.taesu.urlshortner.application.ShortenUrlCreateService
+import io.taesu.urlshortner.interfaces.dtos.ShortenUrlCreateRequest
+import io.taesu.urlshortner.interfaces.dtos.ShortenUrlCreateResponse
 import jakarta.validation.Valid
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotNull
-import jakarta.validation.constraints.Size
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -20,17 +20,15 @@ import org.springframework.web.bind.annotation.RestController
  * @since url-shortner
  */
 @RestController
-class ShortenUrlCreateController(private val shortenUrlCreateService: ShortenUrlCreateService) {
+class ShortenUrlCreateController(
+    private val shortenUrlCreateService: ShortenUrlCreateService,
+    private val appHostConfig: AppHostConfig,
+) {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/v1/shorten-urls")
-    fun create(@Valid @RequestBody request: ShortenUrlCreateRequest): SuccessResponse<String> {
-        return SuccessResponse(shortenUrlCreateService.create(request))
+    fun create(@Valid @RequestBody request: ShortenUrlCreateRequest): SuccessResponse<ShortenUrlCreateResponse> {
+        val hash = shortenUrlCreateService.create(request)
+        return SuccessResponse(ShortenUrlCreateResponse.of(appHostConfig.host, hash))
     }
 }
 
-data class ShortenUrlCreateRequest(
-    @field:Size(max = 4096, message = "'originalUrl' must not be longer than 4096 characters.")
-    @field:NotNull(message = "'originalUrl' must not be not null or blank.")
-    @field:NotBlank(message = "'originalUrl' must not be null or blank.")
-    val originalUrl: String,
-)

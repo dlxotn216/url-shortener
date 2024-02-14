@@ -36,7 +36,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.mockk:mockk:1.4.1")
+    testImplementation("io.mockk:mockk:1.12.1")
     testImplementation("com.ninja-squad:springmockk:3.1.1")
 }
 

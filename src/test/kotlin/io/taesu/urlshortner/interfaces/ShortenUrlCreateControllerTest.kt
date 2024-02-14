@@ -1,20 +1,18 @@
 package io.taesu.urlshortner.interfaces
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.extension.ExtendWith
+import com.ninjasquad.springmockk.MockkBean
+import io.mockk.every
+import io.taesu.urlshortner.app.AbstractControllerTest
+import io.taesu.urlshortner.application.AppHostConfig
+import io.taesu.urlshortner.application.ShortenUrlCreateService
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
-import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import org.springframework.web.context.WebApplicationContext
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 /**
  * Created by itaesu on 2024/02/14.
@@ -23,20 +21,31 @@ import org.springframework.web.context.WebApplicationContext
  * @version url-shortner
  * @since url-shortner
  */
-@ActiveProfiles("test")
-@ExtendWith(SpringExtension::class)
-@WebMvcTest(ShortenUrlCreateController::class)
-class ShortenUrlCreateControllerTest {
-    @Autowired
-    lateinit var mockMvc: MockMvc
+class ShortenUrlCreateControllerTest: AbstractControllerTest() {
+    @MockkBean
+    private lateinit var shortenUrlCreateService: ShortenUrlCreateService
 
+    @MockkBean
+    private lateinit var appHostConfig: AppHostConfig
 
-    @BeforeEach
-    fun setUp(
-        webApplicationContext: WebApplicationContext,
-    ) {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-            .build()
+    @Test
+    fun `단축 URL 생성 API 성공 테스트`() {
+        // given
+        every { shortenUrlCreateService.create(any()) } returns "hash-value"
+        every { appHostConfig.host } returns "https://short-url.com"
+
+        val mvcRequest = MockMvcRequestBuilders.post("/api/v1/shorten-urls")
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(""" { "originalUrl": "https://test.com" } """.trimIndent())
+
+        // when
+        val perform = this.mockMvc.perform(mvcRequest)
+
+        // then
+        perform.andDo(MockMvcResultHandlers.print())
+            .andExpect(status().isCreated)
+            .andExpect(jsonPath("$.result.shortenUrl").value("https://short-url.com/hash-value"))
     }
 
     @ParameterizedTest
@@ -53,8 +62,7 @@ class ShortenUrlCreateControllerTest {
 
         // then
         perform.andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.status().isBadRequest)
-
+            .andExpect(status().isBadRequest)
     }
 
     companion object {
