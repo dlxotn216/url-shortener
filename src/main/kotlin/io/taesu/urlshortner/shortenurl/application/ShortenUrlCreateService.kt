@@ -6,8 +6,6 @@ import io.taesu.urlshortner.shortenurl.domain.ShortenUrlCreatedEvent
 import io.taesu.urlshortner.shortenurl.domain.ShortenUrlEntity
 import io.taesu.urlshortner.shortenurl.domain.ShortenUrlEntityRepository
 import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateRequest
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.bind.ConstructorBinding
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,8 +24,3 @@ class ShortenUrlCreateService(
         }
     }
 }
-
-@ConfigurationProperties(prefix = "config.app")
-class AppHostConfig @ConstructorBinding constructor(
-    val host: String,
-)

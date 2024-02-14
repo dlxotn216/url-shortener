@@ -1,7 +1,7 @@
 package io.taesu.urlshortner.shortenurl.interfaces
 
 import io.taesu.urlshortner.app.dtos.SuccessResponse
-import io.taesu.urlshortner.shortenurl.application.AppHostConfig
+import io.taesu.urlshortner.app.config.AppHostConfig
 import io.taesu.urlshortner.shortenurl.application.ShortenUrlCreateService
 import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateRequest
 import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateResponse
