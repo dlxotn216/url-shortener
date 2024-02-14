@@ -1,4 +1,4 @@
-package io.taesu.urlshortner.domain
+package io.taesu.urlshortner.shortenurl.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column

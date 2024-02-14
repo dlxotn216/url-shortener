@@ -1,10 +1,10 @@
-package io.taesu.urlshortner.interfaces
+package io.taesu.urlshortner.shortenurl.interfaces
 
 import io.taesu.urlshortner.app.dtos.SuccessResponse
-import io.taesu.urlshortner.application.AppHostConfig
-import io.taesu.urlshortner.application.ShortenUrlCreateService
-import io.taesu.urlshortner.interfaces.dtos.ShortenUrlCreateRequest
-import io.taesu.urlshortner.interfaces.dtos.ShortenUrlCreateResponse
+import io.taesu.urlshortner.shortenurl.application.AppHostConfig
+import io.taesu.urlshortner.shortenurl.application.ShortenUrlCreateService
+import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateRequest
+import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping

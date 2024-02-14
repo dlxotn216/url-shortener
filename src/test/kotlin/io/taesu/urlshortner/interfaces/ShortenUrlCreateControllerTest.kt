@@ -3,8 +3,8 @@ package io.taesu.urlshortner.interfaces
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import io.taesu.urlshortner.app.AbstractControllerTest
-import io.taesu.urlshortner.application.AppHostConfig
-import io.taesu.urlshortner.application.ShortenUrlCreateService
+import io.taesu.urlshortner.shortenurl.application.AppHostConfig
+import io.taesu.urlshortner.shortenurl.application.ShortenUrlCreateService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource

@@ -1,4 +1,4 @@
-package io.taesu.urlshortner.infra
+package io.taesu.urlshortner.hash.usecase
 
 /**
  * Created by itaesu on 2024/02/14.

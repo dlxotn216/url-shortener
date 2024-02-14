@@ -1,4 +1,4 @@
-package io.taesu.urlshortner.interfaces.dtos
+package io.taesu.urlshortner.shortenurl.interfaces.dtos
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull

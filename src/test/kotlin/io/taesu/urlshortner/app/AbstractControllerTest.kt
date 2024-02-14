@@ -1,6 +1,6 @@
 package io.taesu.urlshortner.app
 
-import io.taesu.urlshortner.interfaces.ShortenUrlCreateController
+import io.taesu.urlshortner.shortenurl.interfaces.ShortenUrlCreateController
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

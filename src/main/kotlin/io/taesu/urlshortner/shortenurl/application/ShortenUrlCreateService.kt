@@ -1,10 +1,10 @@
-package io.taesu.urlshortner.application
+package io.taesu.urlshortner.shortenurl.application
 
-import io.taesu.urlshortner.domain.ShortenUrlEntity
-import io.taesu.urlshortner.domain.ShortenUrlEntityRepository
-import io.taesu.urlshortner.infra.HashGenerateRequest
-import io.taesu.urlshortner.infra.HashGenerator
-import io.taesu.urlshortner.interfaces.dtos.ShortenUrlCreateRequest
+import io.taesu.urlshortner.shortenurl.domain.ShortenUrlEntity
+import io.taesu.urlshortner.shortenurl.domain.ShortenUrlEntityRepository
+import io.taesu.urlshortner.hash.usecase.HashGenerateRequest
+import io.taesu.urlshortner.hash.usecase.HashGenerator
+import io.taesu.urlshortner.shortenurl.interfaces.dtos.ShortenUrlCreateRequest
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.bind.ConstructorBinding
 import org.springframework.stereotype.Service

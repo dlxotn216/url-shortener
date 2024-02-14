@@ -1,8 +1,8 @@
-package io.taesu.urlshortner.infra.impl
+package io.taesu.urlshortner.hash.usecase.impl
 
 import com.github.f4b6a3.tsid.TsidCreator
-import io.taesu.urlshortner.infra.HashGenerateRequest
-import io.taesu.urlshortner.infra.HashGenerator
+import io.taesu.urlshortner.hash.usecase.HashGenerateRequest
+import io.taesu.urlshortner.hash.usecase.HashGenerator
 import org.springframework.stereotype.Component
 
 /**
