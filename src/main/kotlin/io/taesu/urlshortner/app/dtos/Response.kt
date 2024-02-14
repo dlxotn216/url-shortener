@@ -10,3 +10,13 @@ package io.taesu.urlshortner.app.dtos
 data class SuccessResponse<T>(
     val result: T
 )
+
+data class FailResponse(
+    val errorCode: ErrorCode,
+    val message: String,
+)
+
+enum class ErrorCode {
+    UNEXPECTED,
+    ENTITY_NOT_FOUND,
+}

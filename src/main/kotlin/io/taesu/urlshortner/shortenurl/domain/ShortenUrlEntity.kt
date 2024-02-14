@@ -1,10 +1,11 @@
 package io.taesu.urlshortner.shortenurl.domain
 
+import io.taesu.urlshortner.app.exceptions.AppRuntimeException
+import io.taesu.urlshortner.app.exceptions.EntityNotFoundException
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.CrudRepository
-import org.springframework.stereotype.Repository
 
 
 /**
@@ -25,4 +26,10 @@ class ShortenUrlEntity(
 )
 
 
-interface ShortenUrlEntityRepository: CrudRepository<ShortenUrlEntity, Long>
+interface ShortenUrlEntityRepository: CrudRepository<ShortenUrlEntity, Long> {
+    fun findByHash(hash: String): ShortenUrlEntity?
+}
+
+fun ShortenUrlEntityRepository.findOrThrow(hash: String): ShortenUrlEntity {
+    return findByHash(hash) ?: throw EntityNotFoundException("ShortenUrl[$hash] not found")
+}

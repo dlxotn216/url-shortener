@@ -16,3 +16,7 @@ class ShortenUrlCreateResponse private constructor(val shortenUrl: String) {
         fun of(host: String, hash: String) = ShortenUrlCreateResponse("$host/$hash")
     }
 }
+
+class ShortenUrlRetrieveResponse(
+    val originalUrl: String,
+)
